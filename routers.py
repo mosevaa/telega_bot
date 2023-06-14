@@ -21,6 +21,7 @@ def make_row_keyboard(items: list[str]) -> ReplyKeyboardMarkup:
 available_answers = ['Да', 'Нет']
 start_button = ['Начать']
 return_button = ['Назад']
+log_out_button = ['Выйти из аккаунта']
 
 
 class Order(StatesGroup):
@@ -48,6 +49,13 @@ async def set_api_id(message: Message, state: FSMContext):
         reply_markup=make_row_keyboard(return_button)
     )
     await state.set_state(Order.api_id)
+
+
+@router.message(Text(text="Выйти из аккаунта", ignore_case=True))
+async def log_out(message: Message, state: FSMContext):
+    await state.clear()
+    await message.answer(text='Вы вернулись на главную',
+                         reply_markup=make_row_keyboard(start_button))
 
 
 @router.message(Text(text='Назад', ignore_case=True))
@@ -167,6 +175,7 @@ async def set_url(message: Message, state: FSMContext):
         text='Готово!',
         reply_markup=make_row_keyboard(start_button)
     )
-    await state.clear()
+
+
 
 
