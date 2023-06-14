@@ -173,7 +173,7 @@ async def set_url(message: Message, state: FSMContext):
     await join(urls, user_data['app'])
     await message.answer(
         text='Готово!',
-        reply_markup=make_row_keyboard(start_button)
+        reply_markup=make_row_keyboard(log_out_button)
     )
 
 
