@@ -53,6 +53,9 @@ async def set_api_id(message: Message, state: FSMContext):
 
 @router.message(Text(text="Выйти из аккаунта", ignore_case=True))
 async def log_out(message: Message, state: FSMContext):
+    user_data = await state.get_data()
+    app = user_data['app']
+    await app.disconnect()
     await state.clear()
     await message.answer(text='Вы вернулись на главную',
                          reply_markup=make_row_keyboard(start_button))
