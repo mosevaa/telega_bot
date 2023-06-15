@@ -16,8 +16,8 @@
 ```bash
 git clone https://github.com/mosevaa/telega_bot
 ```
-
-2. Запустите контейнер
+2. Создайте .env файл и впишите в него токен для телеграм-бота
+3. Запустите контейнер
 
 ```bash
 docker-compose up -d --build
